@@ -17,35 +17,16 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # - name: Set up QEMU
-    #   uses: docker/setup-qemu-action@v1
-
-    # - name: Set up Docker Buildx
-    #   uses: docker/setup-buildx-action@v1
       
     - name: Login to Aliyun ACR
       run: echo ${{ secrets.ALIYUN_ACR_PASSWORD }} | docker login --username=围巾jj --password-stdin crpi-6044uvgap7p6k5ne.cn-hangzhou.personal.cr.aliyuncs.com
-    # - name: Login to ACR
-    #   uses: aliyun/acr-login@v1
-    #   with:
-    #     login-server: https://registry.cn-hangzhou.aliyuncs.com
-    #     username: "围巾jj"
-    #     password: "${{ secrets.ALIYUN_CR_PUBLISH_PASSWORD }}"
-        
-    # - name: Build and push
-    #   uses: docker/build-push-action@v5
-    #   with:
-    #     context: .
-    #     platforms: linux/arm64
-    #     push: true
-    #     tags: |
-    #       crpi-6044uvgap7p6k5ne.cn-hangzhou.personal.cr.aliyuncs.com/ywj_720/gdal:3.6.3-full-arm64           
+       
     - name: Build and push Docker image
       run: |
         DOCKER_TAG=$(date +'%Y%m%d%H%M')
         # docker run --privileged --rm tonistiigi/binfmt --install all
-        docker build -tcrpi-6044uvgap7p6k5ne.cn-hangzhou.personal.cr.aliyuncs.com/ywj_720/gdal:3.6.3-full-arm64 .
-        docker push crpi-6044uvgap7p6k5ne.cn-hangzhou.personal.cr.aliyuncs.com/ywj_720/gdal:3.6.3-full-arm64
+        docker build -tcrpi-6044uvgap7p6k5ne.cn-hangzhou.personal.cr.aliyuncs.com/ywj_720/ollama:0.6 .
+        docker push crpi-6044uvgap7p6k5ne.cn-hangzhou.personal.cr.aliyuncs.com/ywj_720/ollama:0.6
       env:
         DOCKER_USERNAME: 围巾jj # 对于阿里云Acr，使用_json_key作为用户名
         DOCKER_PASSWORD: ${{ secrets.ALIYUN_CR_PUBLISH_PASSWORD }} # 引用GitHub Secrets中存储的密码
