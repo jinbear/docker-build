@@ -25,8 +25,8 @@ jobs:
       run: |
         DOCKER_TAG=$(date +'%Y%m%d%H%M')
         # docker run --privileged --rm tonistiigi/binfmt --install all
-        docker build -tcrpi-6044uvgap7p6k5ne.cn-hangzhou.personal.cr.aliyuncs.com/ywj_720/ollama:0.6 .
-        docker push crpi-6044uvgap7p6k5ne.cn-hangzhou.personal.cr.aliyuncs.com/ywj_720/ollama:0.6
+        docker build -tcrpi-6044uvgap7p6k5ne.cn-hangzhou.personal.cr.aliyuncs.com/ywj_720/ollama:0.6.1 .
+        docker push crpi-6044uvgap7p6k5ne.cn-hangzhou.personal.cr.aliyuncs.com/ywj_720/ollama:0.6.1
       env:
         DOCKER_USERNAME: 围巾jj # 对于阿里云Acr，使用_json_key作为用户名
         DOCKER_PASSWORD: ${{ secrets.ALIYUN_CR_PUBLISH_PASSWORD }} # 引用GitHub Secrets中存储的密码
